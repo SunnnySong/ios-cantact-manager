@@ -22,9 +22,9 @@ enum UserInfoParams {
     var error: IOError {
         switch self {
         case .name:
-            return IOError.nameError
+            return IOError.invalidName
         case .phone:
-            return IOError.phoneError
+            return IOError.invalidphone
         }
     }
 }
@@ -37,7 +37,7 @@ struct UserInfo {
     init(input: InfoInput) throws {
         guard let age = Int(input.age),
               (1...999).contains(age) else {
-            throw IOError.ageError
+            throw IOError.invalidAge
         }
         self.age = age
         
